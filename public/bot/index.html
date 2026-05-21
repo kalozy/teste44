@@ -612,9 +612,6 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(-
             <div class="fe-field" style="margin-top:10px"><label>Mensagem fora do horário</label><textarea class="fe-ta" id="cfg-h-msg" style="min-height:56px"></textarea></div>
           </div>
           <div class="sc">
-            
-          </div>
-          <div class="sc">
             <h3>🔑 API Keys</h3>
             <div class="fe-field"><label>Anthropic API Key (IA das respostas)</label><input class="fe-inp" id="cfg-key" type="password" placeholder="sk-ant-..."></div>
             <div class="fe-field" style="margin-top:10px"><label>Groq API Key (transcrição de áudio — grátis)</label><input class="fe-inp" id="cfg-groq" type="password" placeholder="gsk_..."></div>
@@ -1641,8 +1638,6 @@ function renderDashKpis(kpis){
   if(el){
     el.innerHTML =
       '<div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:20px">' +
-        kpiMini('✅', kpis.finished||0, 'Finalizados', '#3a8fff') +
-        kpiMini('🧑‍💼', kpis.pausedByHuman||0, 'Com Atendente', '#f59e0b') +
       '</div>';
   }
 }
@@ -1981,20 +1976,7 @@ function renderCampaignsPage() {
   var body = document.getElementById('camp-page-body');
   if (!body) return;
 
-  // Segment summary cards
-  var segHtml = ''; // SEGMENTOS removido
-  var _segHtml_disabled = '<div style="display:none"><div style="display:none"><div style="display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:24px">';
-  Object.entries(SEG_LABELS).forEach(function(entry) {
-    var k = entry[0], v = entry[1];
-    var count = (campData.counts || {})[k] || 0;
-    segHtml += '<div class="seg-card' + (campSegmentPick===k ? ' active' : '') + '" data-seg="'+k+'" onclick="campSegmentPick=\''+k+'\';renderCampaignsPage()">';
-    segHtml += '<div class="seg-count">'+count+'</div>';
-    segHtml += '<div class="seg-title">'+v.icon+' '+v.label+'</div>';
-    segHtml += '<div class="seg-desc">'+v.desc+'</div>';
-    segHtml += '</div>';
-  });
-  segHtml += '</div></div>';
-
+  var segHtml = '';
   // Campaign list
   var listHtml = '';
   if (!campList.length) {
