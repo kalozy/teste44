@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Traffic Control — Plataforma de Automação e Tráfego</title>
+<meta name="description" content="Gerencie campanhas, automatize o WhatsApp, rastreie vendas e escale seu negócio com tecnologia de ponta.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --white:#ffffff;
+  --off:#f8f8f6;
+  --off2:#f2f1ef;
+  --border:#e8e6e2;
+  --border2:#d4d2cd;
+  --text:#1a1917;
+  --text2:#5c5a56;
+  --text3:#9b9893;
+  --accent:#1a1917;
+  --blue:#2563eb;
+  --green:#16a34a;
+  --tag-bg:#f0efec;
+}
+
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--white);color:var(--text);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+
+/* ── Layout ── */
+.container{max-width:1120px;margin:0 auto;padding:0 32px}
+
+/* ── Nav ── */
+nav{border-bottom:1px solid var(--border);position:sticky;top:0;background:rgba(255,255,255,0.95);backdrop-filter:blur(8px);z-index:100}
+.nav-inner{display:flex;align-items:center;height:56px;gap:32px}
+.nav-logo{font-weight:600;font-size:15px;letter-spacing:-0.3px;color:var(--text);text-decoration:none;display:flex;align-items:center;gap:8px}
+.nav-logo-dot{width:8px;height:8px;border-radius:50%;background:var(--text)}
+.nav-links{display:flex;gap:24px;margin-left:auto}
+.nav-links a{font-size:14px;color:var(--text2);text-decoration:none;transition:color .15s}
+.nav-links a:hover{color:var(--text)}
+.nav-badge{font-size:11px;font-weight:500;background:var(--off2);border:1px solid var(--border);padding:3px 10px;border-radius:20px;color:var(--text2)}
+
+/* ── Hero ── */
+.hero{padding:88px 0 72px;border-bottom:1px solid var(--border)}
+.hero-tag{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:500;color:var(--text2);background:var(--off2);border:1px solid var(--border);padding:5px 12px;border-radius:20px;margin-bottom:28px;letter-spacing:.02em;text-transform:uppercase}
+.hero-tag-dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:blink 2s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.hero h1{font-size:clamp(36px,5vw,62px);font-weight:300;line-height:1.1;letter-spacing:-1.5px;color:var(--text);max-width:700px;margin-bottom:24px}
+.hero h1 em{font-style:italic;font-weight:300}
+.hero-sub{font-size:18px;color:var(--text2);max-width:520px;line-height:1.7;margin-bottom:48px;font-weight:300}
+.hero-stats{display:flex;gap:40px;padding-top:40px;border-top:1px solid var(--border)}
+.hero-stat-num{font-size:28px;font-weight:500;letter-spacing:-1px;color:var(--text)}
+.hero-stat-lbl{font-size:13px;color:var(--text3);margin-top:2px}
+
+/* ── Section headers ── */
+.section{padding:72px 0;border-bottom:1px solid var(--border)}
+.section-label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.12em;color:var(--text3);margin-bottom:16px}
+.section-title{font-size:clamp(24px,3vw,38px);font-weight:300;letter-spacing:-0.8px;color:var(--text);max-width:560px;line-height:1.2}
+.section-title strong{font-weight:500}
+
+/* ── Feature grid ── */
+.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:56px;border:1px solid var(--border);border-radius:8px;overflow:hidden}
+.feat-card{padding:32px 28px;border-right:1px solid var(--border);border-bottom:1px solid var(--border)}
+.feat-card:nth-child(3n){border-right:none}
+.feat-card:nth-last-child(-n+3){border-bottom:none}
+.feat-icon{width:36px;height:36px;border-radius:8px;background:var(--off2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:16px;margin-bottom:20px}
+.feat-title{font-size:15px;font-weight:500;color:var(--text);margin-bottom:8px;letter-spacing:-0.2px}
+.feat-desc{font-size:13px;color:var(--text2);line-height:1.6}
+.feat-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:14px}
+.feat-tag{font-size:11px;color:var(--text3);background:var(--tag-bg);padding:2px 8px;border-radius:20px;font-weight:500}
+
+/* ── How it works timeline ── */
+.timeline{margin-top:56px;display:flex;flex-direction:column;gap:0;border:1px solid var(--border);border-radius:8px;overflow:hidden}
+.timeline-step{display:grid;grid-template-columns:64px 1fr;border-bottom:1px solid var(--border)}
+.timeline-step:last-child{border-bottom:none}
+.timeline-num{padding:28px 0 28px 24px;font-family:'DM Mono',monospace;font-size:12px;color:var(--text3);border-right:1px solid var(--border)}
+.timeline-body{padding:28px 32px}
+.timeline-title{font-size:15px;font-weight:500;color:var(--text);margin-bottom:4px}
+.timeline-desc{font-size:13px;color:var(--text2);line-height:1.6}
+
+/* ── Integration logos ── */
+.integrations{padding:56px 0;border-bottom:1px solid var(--border)}
+.int-label{font-size:12px;color:var(--text3);text-transform:uppercase;letter-spacing:.1em;text-align:center;margin-bottom:32px}
+.int-row{display:flex;align-items:center;justify-content:center;gap:32px;flex-wrap:wrap}
+.int-item{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:500;color:var(--text2);padding:10px 20px;border:1px solid var(--border);border-radius:6px;background:var(--white)}
+.int-item:hover{background:var(--off);border-color:var(--border2)}
+
+/* ── Tech specs ── */
+.specs-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:56px;border:1px solid var(--border);border-radius:8px;overflow:hidden}
+.spec-row{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--border)}
+.spec-row:last-child{border-bottom:none}
+.spec-label{padding:20px 24px;font-size:13px;color:var(--text2);border-right:1px solid var(--border);background:var(--off)}
+.spec-value{padding:20px 24px;font-size:13px;color:var(--text);font-family:'DM Mono',monospace}
+
+/* ── Testimonial ── */
+.quote-section{padding:80px 0;border-bottom:1px solid var(--border);text-align:center}
+.quote-text{font-size:clamp(20px,2.5vw,30px);font-weight:300;font-style:italic;color:var(--text);letter-spacing:-0.5px;line-height:1.4;max-width:720px;margin:0 auto 24px}
+.quote-author{font-size:13px;color:var(--text3)}
+
+/* ── Footer ── */
+footer{padding:40px 0;border-top:1px solid var(--border)}
+.footer-inner{display:flex;align-items:center;justify-content:space-between}
+.footer-copy{font-size:13px;color:var(--text3)}
+.footer-mono{font-family:'DM Mono',monospace;font-size:12px;color:var(--text3)}
+
+/* ── Image placeholders ── */
+.img-block{background:var(--off);border:1px solid var(--border);border-radius:8px;overflow:hidden;position:relative}
+.img-block img{width:100%;height:100%;object-fit:cover;display:block}
+.img-caption{font-size:12px;color:var(--text3);margin-top:10px;font-family:'DM Mono',monospace}
+
+/* ── Two-col ── */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;margin-top:56px}
+.two-col.reverse{direction:rtl}.two-col.reverse > *{direction:ltr}
+
+@media(max-width:768px){
+  .container{padding:0 20px}
+  .feat-grid{grid-template-columns:1fr}
+  .feat-card{border-right:none!important;border-bottom:1px solid var(--border)!important}
+  .feat-card:last-child{border-bottom:none!important}
+  .two-col{grid-template-columns:1fr;gap:32px}
+  .hero-stats{gap:24px;flex-wrap:wrap}
+  .specs-grid{grid-template-columns:1fr}
+  .nav-links{display:none}
+  .hero{padding:52px 0 48px}
+}
+</style>
+</head>
+<body>
+
+<!-- ── Nav ── -->
+<nav>
+  <div class="container">
+    <div class="nav-inner">
+      <a class="nav-logo" href="#">
+        <span class="nav-logo-dot"></span>
+        Traffic Control
+      </a>
+      <div class="nav-links">
+        <a href="#features">Funcionalidades</a>
+        <a href="#how">Como funciona</a>
+        <a href="#tech">Tecnologia</a>
+      </div>
+      <span class="nav-badge">v2.0 SaaS</span>
+    </div>
+  </div>
+</nav>
+
+<!-- ── Hero ── -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-tag">
+      <span class="hero-tag-dot"></span>
+      Plataforma ativa e em produção
+    </div>
+    <h1>Tráfego inteligente.<br><em>Vendas automatizadas.</em></h1>
+    <p class="hero-sub">Gerencie campanhas de cloaking, automatize atendimentos no WhatsApp, rastreie conversões com Meta Ads e escale seu negócio — tudo em um só lugar.</p>
+
+    <!-- Hero image -->
+    <div class="img-block" style="height:420px;background:var(--off2)">
+      <!-- Dashboard preview illustration -->
+      <svg width="100%" height="100%" viewBox="0 0 1120 420" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+        <rect width="1120" height="420" fill="#f2f1ef"/>
+        <!-- Sidebar -->
+        <rect x="0" y="0" width="200" height="420" fill="#1a1917"/>
+        <circle cx="24" cy="28" r="6" fill="#ffffff" opacity=".5"/>
+        <rect x="36" y="22" width="80" height="12" rx="3" fill="#ffffff" opacity=".3"/>
+        <rect x="16" y="60" width="168" height="8" rx="2" fill="#ffffff" opacity=".12"/>
+        <rect x="16" y="80" width="140" height="10" rx="3" fill="#ffffff" opacity=".2"/>
+        <rect x="16" y="100" width="140" height="10" rx="3" fill="#ffffff" opacity=".1"/>
+        <rect x="16" y="120" width="140" height="10" rx="3" fill="#ffffff" opacity=".1"/>
+        <rect x="16" y="152" width="100" height="8" rx="2" fill="#ffffff" opacity=".08"/>
+        <rect x="16" y="170" width="140" height="10" rx="3" fill="#ffffff" opacity=".15"/>
+        <rect x="16" y="190" width="140" height="10" rx="3" fill="#ffffff" opacity=".1"/>
+        <rect x="16" y="210" width="140" height="10" rx="3" fill="#ffffff" opacity=".1"/>
+        <rect x="16" y="240" width="140" height="10" rx="3" fill="#ffffff" opacity=".1"/>
+        <!-- Topbar -->
+        <rect x="200" y="0" width="920" height="48" fill="#ffffff" stroke="#e8e6e2" stroke-width="1"/>
+        <rect x="220" y="16" width="200" height="14" rx="4" fill="#f2f1ef"/>
+        <!-- KPI cards -->
+        <rect x="220" y="72" width="200" height="80" rx="6" fill="#ffffff" stroke="#e8e6e2" stroke-width="1"/>
+        <rect x="236" y="88" width="80" height="8" rx="2" fill="#e8e6e2"/>
+        <rect x="236" y="108" width="120" height="18" rx="3" fill="#1a1917" opacity=".8"/>
+        <rect x="436" y="72" width="200" height="80" rx="6" fill="#ffffff" stroke="#e8e6e2" stroke-width="1"/>
+        <rect x="452" y="88" width="80" height="8" rx="2" fill="#e8e6e2"/>
+        <rect x="452" y="108" width="90" height="18" rx="3" fill="#16a34a" opacity=".7"/>
+        <rect x="652" y="72" width="200" height="80" rx="6" fill="#ffffff" stroke="#e8e6e2" stroke-width="1"/>
+        <rect x="668" y="88" width="80" height="8" rx="2" fill="#e8e6e2"/>
+        <rect x="668" y="108" width="100" height="18" rx="3" fill="#2563eb" opacity=".6"/>
+        <rect x="868" y="72" width="232" height="80" rx="6" fill="#ffffff" stroke="#e8e6e2" stroke-width="1"/>
+        <rect x="884" y="88" width="80" height="8" rx="2" fill="#e8e6e2"/>
+        <rect x="884" y="108" width="110" height="18" rx="3" fill="#d97706" opacity=".6"/>
+        <!-- Table -->
+        <rect x="220" y="172" width="660" height="224" rx="6" fill="#ffffff" stroke="#e8e6e2" stroke-width="1"/>
+        <rect x="220" y="172" width="660" height="36" rx="6" fill="#f8f8f6"/>
+        <rect x="238" y="184" width="60" height="10" rx="2" fill="#9b9893"/>
+        <rect x="320" y="184" width="80" height="10" rx="2" fill="#9b9893"/>
+        <rect x="440" y="184" width="60" height="10" rx="2" fill="#9b9893"/>
+        <rect x="540" y="184" width="60" height="10" rx="2" fill="#9b9893"/>
+        <rect x="640" y="184" width="60" height="10" rx="2" fill="#9b9893"/>
+        <!-- Rows -->
+        <rect x="238" y="222" width="90" height="8" rx="2" fill="#1a1917" opacity=".6"/>
+        <rect x="320" y="222" width="100" height="8" rx="2" fill="#5c5a56" opacity=".6"/>
+        <rect x="440" y="220" width="44" height="12" rx="6" fill="#dcfce7"/>
+        <rect x="238" y="252" width="80" height="8" rx="2" fill="#1a1917" opacity=".6"/>
+        <rect x="320" y="252" width="120" height="8" rx="2" fill="#5c5a56" opacity=".6"/>
+        <rect x="440" y="250" width="44" height="12" rx="6" fill="#dbeafe"/>
+        <rect x="238" y="282" width="100" height="8" rx="2" fill="#1a1917" opacity=".6"/>
+        <rect x="320" y="282" width="90" height="8" rx="2" fill="#5c5a56" opacity=".6"/>
+        <rect x="440" y="280" width="44" height="12" rx="6" fill="#dcfce7"/>
+        <rect x="238" y="312" width="70" height="8" rx="2" fill="#1a1917" opacity=".6"/>
+        <rect x="320" y="312" width="110" height="8" rx="2" fill="#5c5a56" opacity=".6"/>
+        <rect x="440" y="310" width="44" height="12" rx="6" fill="#fef9c3"/>
+        <rect x="238" y="342" width="95" height="8" rx="2" fill="#1a1917" opacity=".6"/>
+        <rect x="320" y="342" width="80" height="8" rx="2" fill="#5c5a56" opacity=".6"/>
+        <rect x="440" y="340" width="44" height="12" rx="6" fill="#dcfce7"/>
+        <!-- Side panel -->
+        <rect x="900" y="172" width="200" height="224" rx="6" fill="#ffffff" stroke="#e8e6e2" stroke-width="1"/>
+        <rect x="916" y="188" width="80" height="8" rx="2" fill="#9b9893"/>
+        <rect x="916" y="210" width="160" height="60" rx="4" fill="#f2f1ef"/>
+        <rect x="930" y="225" width="40" height="8" rx="2" fill="#5c5a56"/>
+        <rect x="930" y="242" width="80" height="18" rx="3" fill="#1a1917" opacity=".7"/>
+        <rect x="916" y="286" width="160" height="60" rx="4" fill="#f2f1ef"/>
+        <rect x="930" y="301" width="40" height="8" rx="2" fill="#5c5a56"/>
+        <rect x="930" y="318" width="60" height="18" rx="3" fill="#16a34a" opacity=".6"/>
+        <!-- Gradient overlay top -->
+        <defs>
+          <linearGradient id="topFade" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#f2f1ef" stop-opacity="0"/>
+            <stop offset="100%" stop-color="#f2f1ef" stop-opacity="0"/>
+          </linearGradient>
+          <linearGradient id="bottomFade" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="70%" stop-color="#f2f1ef" stop-opacity="0"/>
+            <stop offset="100%" stop-color="#f2f1ef" stop-opacity=".8"/>
+          </linearGradient>
+        </defs>
+        <rect width="1120" height="420" fill="url(#bottomFade)"/>
+      </svg>
+    </div>
+    <p class="img-caption">Dashboard — visão geral do sistema</p>
+
+    <div class="hero-stats">
+      <div>
+        <div class="hero-stat-num">Multi-tenant</div>
+        <div class="hero-stat-lbl">Cada usuário isolado</div>
+      </div>
+      <div>
+        <div class="hero-stat-num">Tempo real</div>
+        <div class="hero-stat-lbl">Socket.IO + webhooks</div>
+      </div>
+      <div>
+        <div class="hero-stat-num">IA integrada</div>
+        <div class="hero-stat-lbl">Claude + Groq</div>
+      </div>
+      <div>
+        <div class="hero-stat-num">SaaS ready</div>
+        <div class="hero-stat-lbl">Aprove e gerencie usuários</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Features ── -->
+<section class="section" id="features">
+  <div class="container">
+    <div class="section-label">Funcionalidades</div>
+    <h2 class="section-title">Tudo que você precisa para <strong>dominar o tráfego</strong></h2>
+
+    <div class="feat-grid">
+      <div class="feat-card">
+        <div class="feat-icon">🛡️</div>
+        <div class="feat-title">Cloaking Inteligente</div>
+        <div class="feat-desc">Proteja suas ofertas com filtros avançados por país, dispositivo, ISP, proxy, VPN e muito mais. Redirecione bots para a safe page automaticamente.</div>
+        <div class="feat-tags">
+          <span class="feat-tag">GeoIP</span>
+          <span class="feat-tag">Bot detection</span>
+          <span class="feat-tag">A/B split</span>
+        </div>
+      </div>
+
+      <div class="feat-card">
+        <div class="feat-icon">🤖</div>
+        <div class="feat-title">Bot WhatsApp com IA</div>
+        <div class="feat-desc">Automatize atendimentos com fluxos visuais, IA para mensagens desconhecidas, transcrição de áudio com Groq e campanhas em massa para leads segmentados.</div>
+        <div class="feat-tags">
+          <span class="feat-tag">Baileys</span>
+          <span class="feat-tag">Claude AI</span>
+          <span class="feat-tag">Groq</span>
+        </div>
+      </div>
+
+      <div class="feat-card">
+        <div class="feat-icon">💰</div>
+        <div class="feat-title">Checkout PIX</div>
+        <div class="feat-desc">Links de pagamento personalizados com PIX via Woovi, Facebook Pixel, Meta CAPI, UTMify e confirmação automática via webhook em tempo real.</div>
+        <div class="feat-tags">
+          <span class="feat-tag">Woovi</span>
+          <span class="feat-tag">Meta Pixel</span>
+          <span class="feat-tag">CAPI</span>
+        </div>
+      </div>
+
+      <div class="feat-card">
+        <div class="feat-icon">📊</div>
+        <div class="feat-title">CRM Kanban</div>
+        <div class="feat-desc">Visualize todos os leads em colunas por etapa do funil. Identifique em qual fase cada contato está e tome ações em tempo real.</div>
+        <div class="feat-tags">
+          <span class="feat-tag">Leads</span>
+          <span class="feat-tag">Funil</span>
+          <span class="feat-tag">Real-time</span>
+        </div>
+      </div>
+
+      <div class="feat-card">
+        <div class="feat-icon">📣</div>
+        <div class="feat-title">Faturamento &amp; ROAS</div>
+        <div class="feat-desc">Acompanhe receita aprovada e pendente. Conecte Meta Ads para ver gasto por campanha e calcule o ROAS automaticamente por período.</div>
+        <div class="feat-tags">
+          <span class="feat-tag">Meta API</span>
+          <span class="feat-tag">ROAS</span>
+          <span class="feat-tag">UTM</span>
+        </div>
+      </div>
+
+      <div class="feat-card">
+        <div class="feat-icon">🔄</div>
+        <div class="feat-title">Remarketing Automático</div>
+        <div class="feat-desc">Reenvolva leads inativos com mensagens programadas, mídias personalizadas e intervalos configuráveis. Máximo de tentativas e conversão rastreada.</div>
+        <div class="feat-tags">
+          <span class="feat-tag">Automação</span>
+          <span class="feat-tag">Segmentos</span>
+          <span class="feat-tag">Mídia</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── How it works ── -->
+<section class="section" id="how">
+  <div class="container">
+    <div class="section-label">Como funciona</div>
+    <h2 class="section-title">Do cadastro às <strong>primeiras vendas</strong> em minutos</h2>
+
+    <div class="timeline">
+      <div class="timeline-step">
+        <div class="timeline-num">01</div>
+        <div class="timeline-body">
+          <div class="timeline-title">Crie sua conta e aguarde aprovação</div>
+          <div class="timeline-desc">Cadastre-se com nome, e-mail e senha. O administrador aprova seu acesso pelo painel. Segurança e controle desde o início.</div>
+        </div>
+      </div>
+      <div class="timeline-step">
+        <div class="timeline-num">02</div>
+        <div class="timeline-body">
+          <div class="timeline-title">Conecte seu WhatsApp via QR Code</div>
+          <div class="timeline-desc">Acesse Configurações do bot, clique em Conectar e escaneie o QR com o WhatsApp. Cada conta tem seu próprio bot completamente isolado.</div>
+        </div>
+      </div>
+      <div class="timeline-step">
+        <div class="timeline-num">03</div>
+        <div class="timeline-body">
+          <div class="timeline-title">Configure fluxos de atendimento</div>
+          <div class="timeline-desc">Crie etapas com textos, imagens, vídeos, áudios e condições. O bot responde automaticamente com IA para qualquer mensagem não mapeada.</div>
+        </div>
+      </div>
+      <div class="timeline-step">
+        <div class="timeline-num">04</div>
+        <div class="timeline-body">
+          <div class="timeline-title">Crie links de pagamento e campanhas</div>
+          <div class="timeline-desc">Configure checkouts com PIX Woovi, Pixel do Facebook e UTMify. Crie campanhas de cloaking que protegem suas ofertas e redirecionam bots.</div>
+        </div>
+      </div>
+      <div class="timeline-step">
+        <div class="timeline-num">05</div>
+        <div class="timeline-body">
+          <div class="timeline-title">Acompanhe faturamento e ROAS em tempo real</div>
+          <div class="timeline-desc">Conecte o Meta Ads para ver gasto por campanha. Pagamentos via Woovi chegam instantaneamente via webhook. Filtre por dia, semana ou mês.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Integrations ── -->
+<div class="integrations">
+  <div class="container">
+    <div class="int-label">Integrações nativas</div>
+    <div class="int-row">
+      <div class="int-item">📱 WhatsApp via Baileys</div>
+      <div class="int-item">📡 Meta Ads API</div>
+      <div class="int-item">💸 Woovi PIX</div>
+      <div class="int-item">🧠 Anthropic Claude</div>
+      <div class="int-item">🎤 Groq Whisper</div>
+      <div class="int-item">📊 UTMify</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── Tech section ── -->
+<section class="section" id="tech">
+  <div class="container">
+    <div class="section-label">Arquitetura</div>
+    <h2 class="section-title">Construído para <strong>escalar</strong> como SaaS</h2>
+
+    <div class="two-col" style="margin-top:56px">
+      <div>
+        <p style="font-size:15px;color:var(--text2);line-height:1.8;margin-bottom:20px">Cada usuário cadastrado opera em um ambiente completamente isolado. Bot, fluxos, conversas, campanhas e credenciais — tudo separado por conta, armazenado em diretórios dedicados.</p>
+        <p style="font-size:15px;color:var(--text2);line-height:1.8">O administrador aprova cadastros, define planos (Free ou Admin) e monitora o status de cada bot em tempo real pelo painel de controle.</p>
+      </div>
+      <div class="img-block" style="height:280px">
+        <svg width="100%" height="280" viewBox="0 0 480 280" xmlns="http://www.w3.org/2000/svg">
+          <rect width="480" height="280" fill="#f8f8f6"/>
+          <!-- Server node -->
+          <rect x="180" y="20" width="120" height="48" rx="6" fill="#1a1917"/>
+          <text x="240" y="42" text-anchor="middle" font-family="DM Mono,monospace" font-size="11" fill="#ffffff" opacity=".8">Servidor</text>
+          <text x="240" y="58" text-anchor="middle" font-family="DM Mono,monospace" font-size="10" fill="#ffffff" opacity=".5">Node.js + Socket.IO</text>
+          <!-- Lines down -->
+          <line x1="140" y1="68" x2="140" y2="100" stroke="#d4d2cd" stroke-width="1"/>
+          <line x1="240" y1="68" x2="240" y2="100" stroke="#d4d2cd" stroke-width="1"/>
+          <line x1="340" y1="68" x2="340" y2="100" stroke="#d4d2cd" stroke-width="1"/>
+          <line x1="140" y1="68" x2="340" y2="68" stroke="#d4d2cd" stroke-width="1"/>
+          <!-- User nodes -->
+          <rect x="60" y="100" width="160" height="48" rx="6" fill="#ffffff" stroke="#e8e6e2" stroke-width="1"/>
+          <text x="140" y="120" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12" fill="#1a1917">Usuário A</text>
+          <text x="140" y="136" text-anchor="middle" font-family="DM Mono,monospace" font-size="10" fill="#9b9893">data/users/1/bot/</text>
+          <rect x="160" y="100" width="160" height="48" rx="6" fill="#ffffff" stroke="#e8e6e2" stroke-width="1"/>
+          <text x="240" y="120" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12" fill="#1a1917">Usuário B</text>
+          <text x="240" y="136" text-anchor="middle" font-family="DM Mono,monospace" font-size="10" fill="#9b9893">data/users/2/bot/</text>
+          <rect x="260" y="100" width="160" height="48" rx="6" fill="#ffffff" stroke="#e8e6e2" stroke-width="1"/>
+          <text x="340" y="120" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12" fill="#1a1917">Usuário C</text>
+          <text x="340" y="136" text-anchor="middle" font-family="DM Mono,monospace" font-size="10" fill="#9b9893">data/users/3/bot/</text>
+          <!-- Data dirs -->
+          <line x1="140" y1="148" x2="140" y2="178" stroke="#d4d2cd" stroke-width="1"/>
+          <line x1="240" y1="148" x2="240" y2="178" stroke="#d4d2cd" stroke-width="1"/>
+          <line x1="340" y1="148" x2="340" y2="178" stroke="#d4d2cd" stroke-width="1"/>
+          <rect x="80" y="178" width="120" height="80" rx="6" fill="#f2f1ef" stroke="#e8e6e2" stroke-width="1"/>
+          <text x="140" y="198" text-anchor="middle" font-family="DM Mono,monospace" font-size="10" fill="#5c5a56">auth/</text>
+          <text x="140" y="214" text-anchor="middle" font-family="DM Mono,monospace" font-size="10" fill="#5c5a56">flows.json</text>
+          <text x="140" y="230" text-anchor="middle" font-family="DM Mono,monospace" font-size="10" fill="#5c5a56">sessions.json</text>
+          <text x="140" y="246" text-anchor="middle" font-family="DM Mono,monospace" font-size="10" fill="#9b9893">conversations</text>
+          <rect x="180" y="178" width="120" height="80" rx="6" fill="#f2f1ef" stroke="#e8e6e2" stroke-width="1"/>
+          <text x="240" y="198" text-anchor="middle" font-family="DM Mono,monospace" font-size="10" fill="#5c5a56">auth/</text>
+          <text x="240" y="214" text-anchor="middle" font-family="DM Mono,monospace" font-size="10" fill="#5c5a56">flows.json</text>
+          <text x="240" y="230" text-anchor="middle" font-family="DM Mono,monospace" font-size="10" fill="#5c5a56">sessions.json</text>
+          <text x="240" y="246" text-anchor="middle" font-family="DM Mono,monospace" font-size="10" fill="#9b9893">conversations</text>
+          <rect x="280" y="178" width="120" height="80" rx="6" fill="#f2f1ef" stroke="#e8e6e2" stroke-width="1"/>
+          <text x="340" y="198" text-anchor="middle" font-family="DM Mono,monospace" font-size="10" fill="#5c5a56">auth/</text>
+          <text x="340" y="214" text-anchor="middle" font-family="DM Mono,monospace" font-size="10" fill="#5c5a56">flows.json</text>
+          <text x="340" y="230" text-anchor="middle" font-family="DM Mono,monospace" font-size="10" fill="#5c5a56">sessions.json</text>
+          <text x="340" y="246" text-anchor="middle" font-family="DM Mono,monospace" font-size="10" fill="#9b9893">conversations</text>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Tech specs table -->
+    <div class="specs-grid" style="margin-top:56px">
+      <div class="spec-row">
+        <div class="spec-label">Runtime</div>
+        <div class="spec-value">Node.js 20 + Express</div>
+      </div>
+      <div class="spec-row">
+        <div class="spec-label">WhatsApp</div>
+        <div class="spec-value">@whiskeysockets/baileys</div>
+      </div>
+      <div class="spec-row">
+        <div class="spec-label">Banco de dados</div>
+        <div class="spec-value">SQLite (better-sqlite3)</div>
+      </div>
+      <div class="spec-row">
+        <div class="spec-label">Real-time</div>
+        <div class="spec-value">Socket.IO por sala de usuário</div>
+      </div>
+      <div class="spec-row">
+        <div class="spec-label">IA</div>
+        <div class="spec-value">Anthropic Claude + Groq Whisper</div>
+      </div>
+      <div class="spec-row">
+        <div class="spec-label">Autenticação</div>
+        <div class="spec-value">express-session + bcrypt</div>
+      </div>
+      <div class="spec-row">
+        <div class="spec-label">Deploy</div>
+        <div class="spec-value">Docker / Render / Railway</div>
+      </div>
+      <div class="spec-row" style="border-bottom:none">
+        <div class="spec-label">Isolamento</div>
+        <div class="spec-value">Multi-tenant por diretório</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Quote ── -->
+<div class="quote-section">
+  <div class="container">
+    <p class="quote-text">"Automatize o que pode ser automatizado. Escale o que não pode ser escalado manualmente."</p>
+    <div class="quote-author">Traffic Control — Plataforma SaaS</div>
+  </div>
+</div>
+
+<!-- ── Footer ── -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div style="display:flex;align-items:center;gap:8px">
+        <span style="width:6px;height:6px;border-radius:50%;background:var(--text)"></span>
+        <span class="footer-copy">Traffic Control</span>
+      </div>
+      <span class="footer-mono">v2.0 · SaaS Platform</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
